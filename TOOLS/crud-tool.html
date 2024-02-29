@@ -9,7 +9,7 @@
         <h1 class="text-center mt-5">CRUD Tool v0.1</h1>
         <h3 class="text-center mt-3">Last updated: 28/02/2024</h3>
         <div class="row mt-5">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md-12">
                 <form id="myForm">
                     <div class="form-group">
                         <input type="text" id="name" class="form-control" placeholder="Nom" required>
@@ -23,12 +23,13 @@
                     <div class="form-group">
                         <input type="text" id="url" class="form-control" placeholder="URL" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary mt-2">Ajouter</button>
+                    <button id="export" class="btn btn-success mt-2">Exporter</button>
                 </form>
                 <table class="table mt-5" id="myTable">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Nom</th>
                             <th>Titre</th>
                             <th>Description</th>
                             <th>URL</th>

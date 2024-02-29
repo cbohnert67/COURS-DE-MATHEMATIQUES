@@ -1,7 +1,7 @@
 document.getElementById('myForm').addEventListener('submit', saveData);
 
 /**
- * Récupère les données depuis le stockage local et les affiche dans un tableau HTML.
+ * Récupère les données depuis le stockage local, les ordonne et les affiche dans un tableau HTML.
  */
 function fetchData() {
     let dataArray = JSON.parse(localStorage.getItem('data'));
@@ -9,7 +9,7 @@ function fetchData() {
 
     dataView.innerHTML = '';
 
-    dataArray.sort((a, b) => a.name.localeCompare(b.name));    
+    dataArray.sort((a, b) => (a.name.localeCompare(b.name)) && (a.name.length - b.name.length > 0));    
     
     for(let i = 0; i < dataArray.length; i++) {
         let name = dataArray[i].name;
@@ -17,14 +17,14 @@ function fetchData() {
         let description = dataArray[i].description;
         let url = dataArray[i].url;
 
-        dataView.innerHTML += `<tr>
+        dataView.innerHTML += `<tr style="font-size:0.9rem;">
             <td>${name}</td>
             <td>${title}</td>
             <td>${description}</td>
             <td>${url}</td>
             <td>
-                <a href="#" onclick="deleteData('${name}')">Delete</a> | 
-                <a href="#" onclick="editData('${name}')">Edit</a>
+                <a href="#" onclick="deleteData('${name}')"><button id="export" class="btn btn-danger mt-1">Supprimer</button></a> 
+                <a href="#" onclick="editData('${name}')"><button id="export" class="btn btn-warning mt-1">Editer</button></a>
             </td>
             </tr>`;
     }
@@ -104,5 +104,20 @@ function editData(name) {
     }
 }
 
+/*** 
+* Exports the data to a JSON file when the export button is clicked.
+*/
+document.getElementById('export').addEventListener('click', function() {
+    if (confirm("Confirmez-vous l'export de la liste ?")) {
+        let dataArray = JSON.parse(localStorage.getItem('data'));
+        let dataStr = JSON.stringify(dataArray);
+        let dataBlob = new Blob([dataStr], {type: 'application/json'});
+        let url = URL.createObjectURL(dataBlob);
+        let link = document.createElement('a');
+        link.download = 'data.json';
+        link.href = url;
+        link.click();
+    }
+});
 
 fetchData();
