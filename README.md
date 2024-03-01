@@ -67,4 +67,4 @@ Les user stories suivantes couvrent les fonctionnalités de base d'une applicati
 
 ### Avancement
 
-0%
+La version 0.1 de Roadmap est créée et disponible.
