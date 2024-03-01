@@ -1,6 +1,4 @@
-.custom-col {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    margin: 5px;
-    padding: 10px;
+.container {
+    padding-top: 1%;
+    padding-bottom: 1%;
 }

@@ -14,6 +14,11 @@ document.getElementById('jsonFile').addEventListener('change', function(e) {
     }
 });
 
+/**
+ * Generates the layout for the given data.
+ * 
+ * @param {Array} data - The data used to generate the layout.
+ */
 function generateLayout(data) {
     let container = document.getElementById('container');
     let i = 0;
@@ -39,18 +44,18 @@ function generateLayout(data) {
         let img = document.createElement('img');
         img.className = 'img-fluid';
         img.alt = 'elearning-icon';
-        img.width = 300;
-        img.style.paddingLeft = "50px";
+        img.width = 250;
+        img.style.paddingLeft = "90px";
         img.src = 'elearning-icon.svg';
         card.appendChild(content);
-        if (i % 2 == 1) {
-            col_left.appendChild(card);
-            col_right.appendChild(module);
-            col_right.appendChild(img);
-        } else {
+        if (i % 2 == 0) {
             col_left.appendChild(module);
             col_left.appendChild(img);
             col_right.appendChild(card);
+        } else {
+            col_left.appendChild(card);
+            col_right.appendChild(module);
+            col_right.appendChild(img);
         }
         row.appendChild(col_left);
         row.appendChild(col_right);
@@ -59,19 +64,20 @@ function generateLayout(data) {
     });
 }
 
+/**
+ * Generates a card element based on the provided item.
+ * @param {Object} item - The item object containing title, description, and url properties.
+ * @returns {HTMLElement} - The generated card element.
+ */
 function generateCard(item) {
     let cardBody = document.createElement('div');
-    cardBody.className = 'card-body text-center';
+    cardBody.className = 'card-body';
     let h1 = document.createElement('h1');
     h1.className = 'card-title';
     h1.textContent = item.title;
     cardBody.appendChild(h1);
-    let h4 = document.createElement('h4');
-    h4.className = 'card-subtitle mb-2 text-muted';
-    h4.textContent = 'Chapitres :'
-    cardBody.appendChild(h4);
     let p = document.createElement('p');
-    p.className = 'card-text';
+    p.className = 'card-text text-justify';
     p.textContent = item.description;
     cardBody.appendChild(p);
     let a = document.createElement('a');
